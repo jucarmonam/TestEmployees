@@ -12,8 +12,4 @@ public class EmployeeService {
     public int getAnnualSalary(int monthlySalary) {
         return annualSalaryCalculator.calculateAnnualSalary(monthlySalary);
     }
-
-    public int calculateAnnualSalary(int salary) {
-        return salary * 12;
-    }
 }

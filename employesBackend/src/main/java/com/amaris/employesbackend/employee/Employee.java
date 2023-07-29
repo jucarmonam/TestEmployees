@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Employee implements Business {
     @JsonProperty("id")
     private int id;
     @JsonProperty("employee_name")
@@ -23,4 +23,9 @@ public class Employee {
     private int age;
     @JsonProperty("profile_image")
     private String image;
+
+    @Override
+    public void calculateAnnualSalary() {
+        anualSalary = salary * 12;
+    }
 }
