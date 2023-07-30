@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main>
+  <main class="home">
     <h1>Type an Employee ID</h1>
     <div class="input-group mb-3">
       <input v-model="ID" type="number" class="form-control" placeholder="Employee's ID" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -9,7 +9,7 @@
         <button @click="retrieveEmployees" class="btn btn-outline-secondary" type="button">Button</button>
       </div>
     </div>
-    <table class="table table-hover">
+    <table v-if="employees.length > 0" class="table table-hover">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -31,6 +31,9 @@
         </tr>
       </tbody>
     </table>
+    <div v-else>
+        <h2>{{ Message }}</h2>
+    </div>
   </main>
 </template>
 
@@ -44,31 +47,45 @@ export default {
   data() {
     return {
       employees: [] as Employee[],
-      ID: "" as number | string
+      ID: "" as number | string,
+      Message: "No info to show"
     };
   },
   methods: {
-    retrieveEmployees() {
-      if(this.ID != -1){
-        DataService.get(this.ID as number)
-        .then(response => {
+    async retrieveEmployees() {
+      if(this.ID != ""){
+        try {
+          const response = await DataService.get(this.ID as number)
           this.employees = [response.data.data];
           console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+        } catch (e: any) {
+          console.log("error: ",e);
+          this.employees = [];
+          this.Message = e.reponse.data.message;
+        }
       }else{
-        DataService.getAll()
-        .then(response => {
+        try {
+          const response = await DataService.getAll();
           this.employees = response.data.data;
           console.log(response.data.data);
-        })
-        .catch(e => {
+        } catch (e: any) {
           console.log(e);
-        });
+          this.employees = [];
+          this.Message = e.reponse.data.message;
+        }
       }
     }
   }
 };
 </script>
+
+<style scoped>
+.home{
+  margin: 0 30%;
+}
+
+h1{
+  text-align: center;
+  color: aquamarine;
+}
+</style>
