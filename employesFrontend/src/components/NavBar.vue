@@ -4,8 +4,8 @@
   <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-      <img src="../assets/logo.svg" alt="Bootstrap" width="30" height="24">
-    </a>
+        <img src="../assets/logo.svg" alt="Bootstrap" width="30" height="24" />
+      </a>
       <button
         class="navbar-toggler"
         type="button"
