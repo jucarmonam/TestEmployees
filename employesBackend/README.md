@@ -25,5 +25,5 @@ Instructions on how to get the project set up locally.
 17. ![Alt Text](src/main/resources/images/appDeployed.png)
 ## Usage
 
-You can test the API in Postman for example
+You can test the API in Postman for example with URL/employees for all employees or URL/employees/userId for an specific employee
 ![Alt Text](src/main/resources/images/apiTest.png)
