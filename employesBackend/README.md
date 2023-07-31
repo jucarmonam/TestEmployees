@@ -8,7 +8,7 @@ Instructions on how to get the project set up locally.
 
 1. Clone the project
 2. Now download WildFly application server https://www.wildfly.org/ 
-3. Next step is setting up WildFly user
+3. Next step is setting up WildFly user. More information(https://www.springcloud.io/post/2022-09/spring-boot--wildfly/#gsc.tab=0 , https://www.mastertheboss.com/jboss-frameworks/spring/spring-boot-hello-world-on-wildfly/)
 4. with a terminal move into bin subdirectory
 5. run ./add-user.sh on Linux or add-user.bat on Windows
 6. ![Alt Text](src/main/resources/images/seetingUpWildfly.png)
