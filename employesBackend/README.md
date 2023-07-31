@@ -25,9 +25,8 @@ Instructions on how to get the project set up locally.
 17. ![Alt Text](src/main/resources/images/appDeployed.png)
 ## Usage
 
-A simple example of how to use the project.
-
-## Contributing
+You can test the API in Postman for example
+![Alt Text](src/main/resources/images/apiTest.png)
 
 If you are open to contributions, provide guidelines on how others can contribute to your project.
 
