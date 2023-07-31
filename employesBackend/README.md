@@ -21,6 +21,8 @@ Instructions on how to get the project set up locally.
 13. ![Alt Text](src/main/resources/images/mavenDeploy.png)
 14. ![Alt Text](src/main/resources/images/cleanDeploy.png)
 15. ![Alt Text](src/main/resources/images/installDeploy.png)
+16. You can go to  http://127.0.0.1:9990 and look in the deployments app your project deployed and running
+17. ![Alt Text](src/main/resources/images/appDeployed.png)
 ## Usage
 
 A simple example of how to use the project.
