@@ -27,9 +27,3 @@ Instructions on how to get the project set up locally.
 
 You can test the API in Postman for example
 ![Alt Text](src/main/resources/images/apiTest.png)
-
-If you are open to contributions, provide guidelines on how others can contribute to your project.
-
-## Other Information
-
-Any other relevant information or links.
