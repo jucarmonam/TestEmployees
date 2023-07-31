@@ -1,4 +1,4 @@
-package com.amaris.employesbackend.employee;
+package com.amaris.employesbackend.business;
 
 import javax.ejb.Stateless;
 

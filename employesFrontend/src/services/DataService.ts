@@ -1,13 +1,13 @@
-import http from "../http-common";
+import http from '../http-common'
 
 class DataService {
   getAll() {
-    return http.get("/employees");
+    return http.get('/employees')
   }
 
   get(id: number) {
-    return http.get(`/employee/${id}`);
+    return http.get(`/employees/${id}`)
   }
 }
 
-export default new DataService();
+export default new DataService()

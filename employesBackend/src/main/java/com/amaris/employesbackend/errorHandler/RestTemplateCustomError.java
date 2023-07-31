@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 
-@Data
 @NoArgsConstructor
 public class RestTemplateCustomError extends RuntimeException {
 
@@ -15,5 +14,21 @@ public class RestTemplateCustomError extends RuntimeException {
         super(error);
         this.statusCode = statusCode;
         this.error = error;
+    }
+
+    public HttpStatusCode getStatusCode() {
+        return statusCode;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    @Override
+    public String toString() {
+        return "RestTemplateCustomError{" +
+                "statusCode=" + statusCode +
+                ", error='" + error + '\'' +
+                '}';
     }
 }

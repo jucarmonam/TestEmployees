@@ -1,6 +1,6 @@
 package com.amaris.employesbackend.employee;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.amaris.employesbackend.business.Business;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

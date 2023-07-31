@@ -4,7 +4,7 @@
   <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../assets/logo.svg" alt="Bootstrap" width="30" height="24" />
+        <img src="../assets/logoAmaris.png" alt="Bootstrap" width="100" height="40" />
       </a>
       <button
         class="navbar-toggler"

@@ -4,9 +4,18 @@
   <main class="home">
     <h1>Type an Employee ID</h1>
     <div class="input-group mb-3">
-      <input v-model="ID" type="number" class="form-control" placeholder="Employee's ID" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <input
+        v-model="ID"
+        type="number"
+        class="form-control"
+        placeholder="Employee's ID"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+      />
       <div class="input-group-append">
-        <button @click="retrieveEmployees" class="btn btn-outline-secondary" type="button">Button</button>
+        <button @click="retrieveEmployees" class="btn btn-outline-secondary" type="button">
+          Button
+        </button>
       </div>
     </div>
     <table v-if="employees.length > 0" class="table table-hover">
@@ -25,66 +34,72 @@
           <th scope="row">{{ employee.id }}</th>
           <td>{{ employee.employee_name }}</td>
           <td>{{ employee.employee_salary }}</td>
-          <td>{{ employee.employee_anual_salary || 0}}</td>
+          <td>{{ employee.employee_anual_salary || 0 }}</td>
           <td>{{ employee.employee_age }}</td>
-          <td>{{ employee.profile_image || 'none'}}</td>
+          <td>{{ employee.profile_image || 'none' }}</td>
         </tr>
       </tbody>
     </table>
     <div v-else>
-        <h2>{{ Message }}</h2>
+      <h2>{{ Message }}</h2>
     </div>
   </main>
 </template>
 
 <script lang="ts">
-import DataService from "../services/DataService";
+import DataService from '../services/DataService'
 // import type
 import type Employee from '@/types/Employee'
 
 export default {
-  name: "employees-list",
+  name: 'employees-list',
   data() {
     return {
       employees: [] as Employee[],
-      ID: "" as number | string,
-      Message: "No info to show"
-    };
+      ID: '' as number | string,
+      Message: 'No info to show'
+    }
   },
   methods: {
-    async retrieveEmployees() {
-      if(this.ID != ""){
-        try {
-          const response = await DataService.get(this.ID as number)
-          this.employees = [response.data.data];
-          console.log(response.data);
-        } catch (e: any) {
-          console.log("error: ",e);
-          this.employees = [];
-          this.Message = e.reponse.data.message;
-        }
-      }else{
-        try {
-          const response = await DataService.getAll();
-          this.employees = response.data.data;
-          console.log(response.data.data);
-        } catch (e: any) {
-          console.log(e);
-          this.employees = [];
-          this.Message = e.reponse.data.message;
-        }
+    retrieveEmployees() {
+      if (this.ID == '') {
+        this.getAllEmployees();
+      } else {
+        this.getEmployeeByID();
+      }
+    },
+    async getAllEmployees(){
+      try {
+        const response = await DataService.getAll()
+        console.log(response)
+        this.employees = response.data
+      } catch (e: any) {
+        console.log(e.response.data.message)
+        this.employees = []
+        this.Message = e.response.data.message
+      }
+    },
+    async getEmployeeByID(){
+      try {
+        const response = await DataService.get(this.ID as number)
+        console.log(response)
+        this.employees = [response.data]
+      } catch (e: any) {
+        console.log('error: ', e.response.data.message)
+        this.employees = []
+        this.Message = e.response.data.message
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
-.home{
+.home {
   margin: 0 30%;
 }
 
-h1{
+h1 {
   text-align: center;
   color: aquamarine;
 }

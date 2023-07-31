@@ -7,28 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
     @Value("${spring.datasource.url}")
-    private String url;
+    private String uri;
     RestTemplate restTemplate = new RestTemplate();
-
-    @Autowired
-    private EmployeeService employeeService;
 
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
         restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
-        url = url + "/employees";
+        String url = uri + "/employees";
 
         ResponseEntity<ApiResponseAll> response = restTemplate.getForEntity(url, ApiResponseAll.class);
 
@@ -43,7 +38,7 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
         restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
-        url = url + "/employee/" + id;
+        String url = uri + "/employee/" + id;
 
         ResponseEntity<ApiResponse> response = restTemplate.getForEntity(url, ApiResponse.class);
 
