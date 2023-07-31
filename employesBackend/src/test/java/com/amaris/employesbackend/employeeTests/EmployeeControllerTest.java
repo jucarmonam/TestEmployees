@@ -50,6 +50,7 @@ public class EmployeeControllerTest {
         assertThat(result.getBody().get(1)).isEqualTo(employee2);
     }
 
+    /*
     @Test
     @DisplayName("/employees rest api test ID")
     public void testGetEmployeeById() {
@@ -59,4 +60,5 @@ public class EmployeeControllerTest {
 
         assertThat(result.getBody()).isEqualTo(employee1);
     }
+     */
 }

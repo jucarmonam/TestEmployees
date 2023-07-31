@@ -74,9 +74,9 @@ export default {
         console.log(response)
         this.employees = response.data
       } catch (e: any) {
-        console.log(e.response.data.message)
+        console.log(e)
         this.employees = []
-        this.Message = e.response.data.message
+        this.Message = e.response.data
       }
     },
     async getEmployeeByID(){
@@ -85,9 +85,9 @@ export default {
         console.log(response)
         this.employees = [response.data]
       } catch (e: any) {
-        console.log('error: ', e.response.data.message)
+        console.log('error: ', e)
         this.employees = []
-        this.Message = e.response.data.message
+        this.Message = e.response.data
       }
     }
   }

@@ -34,7 +34,6 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
             }
         } else if (httpResponse.getStatusCode().is4xxClientError()) {
             // handle CLIENT_ERROR
-            HttpStatusCode status = httpResponse.getStatusCode();
             if (httpResponse.getStatusCode() == HttpStatus.BAD_REQUEST) {
                 throw new RestTemplateCustomError(httpResponse.getStatusCode(), "Bad Request");
             }else if(httpResponse.getStatusCode() == HttpStatus.TOO_MANY_REQUESTS){
