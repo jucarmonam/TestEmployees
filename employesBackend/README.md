@@ -1,17 +1,17 @@
-# Backend project for Employees API
+# Backend project for Employees' API
 
 Brief description of the project.
 
 ## Setup and Installation
 
-Instructions on how to get the project setup locally.
+Instructions on how to get the project set up locally.
 
 1. Clone the project
-Setup Wildlfy
-2. Fristly download WildFly application server https://www.wildfly.org/ 
+2. Now download WildFly application server https://www.wildfly.org/ 
 3. Next step is setting up WildFly user
-4. You can open the project with Intellij IDEA or whatever text editor
-5. If you open the project 
+4. ![Alt Text](relative/images/image.jpg)
+5. You can open the project with Intellij IDEA or whatever text editor
+6. If you open the project 
 ## Usage
 
 A simple example of how to use the project.
