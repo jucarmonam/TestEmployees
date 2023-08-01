@@ -17,9 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    @Value("${spring.datasource.url}")
+    @Value("${spring.api.url}")
     private String uri;
     RestTemplate restTemplate = new RestTemplate();
+
+    @Autowired
+    EmployeeService employeeService;
 
     @GetMapping
     public ResponseEntity<?> getAllEmployees() {
@@ -27,18 +30,19 @@ public class EmployeeController {
         String url = uri + "/employees";
 
         try{
-            ResponseEntity<ApiResponseAll> response = restTemplate.getForEntity(url, ApiResponseAll.class);
-
-            if(response.getBody().getData() != null){
-                response.getBody().getData().forEach(Employee::calculateAnnualSalary);
-                return new ResponseEntity<>(response.getBody().getData(), HttpStatus.OK);
+            if(employeeService.getAllEmployees().size() == 0){
+                callApi();
             }
 
+            ResponseEntity<ApiResponseAll> response = restTemplate.getForEntity(url, ApiResponseAll.class);
+
+            response.getBody().getData().forEach(Employee::calculateAnnualSalary);
             return new ResponseEntity<>(response.getBody().getData(), HttpStatus.OK);
         }catch (RestTemplateCustomError e){
             // A RestTemplateCustomError was thrown, so we return this error to the client.
             // e.getMessage() should return 'Too Many Requests' for 429 status code.
-            return new ResponseEntity<>(e.getError(), e.getStatusCode());
+            //return new ResponseEntity<>(e.getError(), e.getStatusCode());
+            return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
         }
     }
 
@@ -48,20 +52,27 @@ public class EmployeeController {
         String url = uri + "/employee/" + id;
 
         try{
-            ResponseEntity<ApiResponse> response = restTemplate.getForEntity(url, ApiResponse.class);
-
-            if(response.getBody().getData() != null){
-                Employee employee = response.getBody().getData();
-                employee.calculateAnnualSalary();
-                return new ResponseEntity<>(employee, HttpStatus.OK);
+            if(employeeService.getAllEmployees().size() == 0){
+                callApi();
             }
 
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            ResponseEntity<ApiResponse> response = restTemplate.getForEntity(url, ApiResponse.class);
+
+            Employee employee = response.getBody().getData();
+            employee.calculateAnnualSalary();
+            return new ResponseEntity<>(employee, HttpStatus.OK);
         }catch (RestTemplateCustomError e){
             // A RestTemplateCustomError was thrown, so we return this error to the client.
             // e.getError() should return 'Too Many Requests' for 429 status code.
-            return new ResponseEntity<>(e.getError(), e.getStatusCode());
+            //return new ResponseEntity<>(e.getError(), e.getStatusCode());
+            return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
         }
+    }
 
+    public void callApi() {
+        String url = uri + "/employees";
+        ResponseEntity<ApiResponseAll> response = restTemplate.getForEntity(url, ApiResponseAll.class);
+        response.getBody().getData().forEach(Employee::calculateAnnualSalary);
+        response.getBody().getData().forEach(employeeService::saveOrUpdate);
     }
 }
