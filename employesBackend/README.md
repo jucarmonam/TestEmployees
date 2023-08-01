@@ -8,7 +8,7 @@ Instructions on how to get the project set up locally.
 
 1. Clone the project
 2. Now download WildFly application server https://www.wildfly.org/ 
-3. Next step is setting up WildFly user
+3. Next step is setting up WildFly user. More information(https://www.springcloud.io/post/2022-09/spring-boot--wildfly/#gsc.tab=0 , https://www.mastertheboss.com/jboss-frameworks/spring/spring-boot-hello-world-on-wildfly/)
 4. with a terminal move into bin subdirectory
 5. run ./add-user.sh on Linux or add-user.bat on Windows
 6. ![Alt Text](src/main/resources/images/seetingUpWildfly.png)
@@ -21,16 +21,9 @@ Instructions on how to get the project set up locally.
 13. ![Alt Text](src/main/resources/images/mavenDeploy.png)
 14. ![Alt Text](src/main/resources/images/cleanDeploy.png)
 15. ![Alt Text](src/main/resources/images/installDeploy.png)
-16. You can go to  http://127.0.0.1:9990 and look in the deployments tab your project deployed and running
+16. You can go to  http://127.0.0.1:9990 and look in the deployments tab your project is deployed and running and its URL
 17. ![Alt Text](src/main/resources/images/appDeployed.png)
 ## Usage
 
-A simple example of how to use the project.
-
-## Contributing
-
-If you are open to contributions, provide guidelines on how others can contribute to your project.
-
-## Other Information
-
-Any other relevant information or links.
+You can test the API in Postman for example with URL/employees for all employees or URL/employees/userId for an specific employee
+![Alt Text](src/main/resources/images/apiTest.png)
